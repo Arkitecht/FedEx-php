@@ -6,6 +6,8 @@ use \WsdlToPhp\PackageBase\AbstractStructBase;
 
 /**
  * This class stands for HoldAtLocationDetail Structs
+ * Meta informations extracted from the WSDL
+ * - documentation: Descriptive data required for a FedEx shipment that is to be held at the destination FedEx location for pickup by the recipient.
  * @subpackage Structs
  */
 class HoldAtLocationDetail extends AbstractStructBase
@@ -14,7 +16,7 @@ class HoldAtLocationDetail extends AbstractStructBase
      * The PhoneNumber
      * Meta informations extracted from the WSDL
      * - documentation: Contact phone number for recipient of shipment.
-     * - minOccurs: 0
+     * - minOccurs: 1
      * @var string
      */
     public $PhoneNumber;
@@ -36,46 +38,24 @@ class HoldAtLocationDetail extends AbstractStructBase
      */
     public $LocationType;
     /**
-     * The LocationId
-     * Meta informations extracted from the WSDL
-     * - documentation: Location identification (for facilities identified by an alphanumeric location code).
-     * - minOccurs: 0
-     * @var string
-     */
-    public $LocationId;
-    /**
-     * The LocationNumber
-     * Meta informations extracted from the WSDL
-     * - documentation: Location identification (for facilities identified by an numeric location code).
-     * - minOccurs: 0
-     * @var int
-     */
-    public $LocationNumber;
-    /**
      * Constructor method for HoldAtLocationDetail
      * @uses HoldAtLocationDetail::setPhoneNumber()
      * @uses HoldAtLocationDetail::setLocationContactAndAddress()
      * @uses HoldAtLocationDetail::setLocationType()
-     * @uses HoldAtLocationDetail::setLocationId()
-     * @uses HoldAtLocationDetail::setLocationNumber()
      * @param string $phoneNumber
      * @param \Arkitecht\FedEx\Structs\ContactAndAddress $locationContactAndAddress
      * @param string $locationType
-     * @param string $locationId
-     * @param int $locationNumber
      */
-    public function __construct($phoneNumber = null, \Arkitecht\FedEx\Structs\ContactAndAddress $locationContactAndAddress = null, $locationType = null, $locationId = null, $locationNumber = null)
+    public function __construct($phoneNumber = null, \Arkitecht\FedEx\Structs\ContactAndAddress $locationContactAndAddress = null, $locationType = null)
     {
         $this
             ->setPhoneNumber($phoneNumber)
             ->setLocationContactAndAddress($locationContactAndAddress)
-            ->setLocationType($locationType)
-            ->setLocationId($locationId)
-            ->setLocationNumber($locationNumber);
+            ->setLocationType($locationType);
     }
     /**
      * Get PhoneNumber value
-     * @return string|null
+     * @return string
      */
     public function getPhoneNumber()
     {
@@ -130,42 +110,6 @@ class HoldAtLocationDetail extends AbstractStructBase
             throw new \InvalidArgumentException(sprintf('Value "%s" is invalid, please use one of: %s', $locationType, implode(', ', \Arkitecht\FedEx\Enums\FedExLocationType::getValidValues())), __LINE__);
         }
         $this->LocationType = $locationType;
-        return $this;
-    }
-    /**
-     * Get LocationId value
-     * @return string|null
-     */
-    public function getLocationId()
-    {
-        return $this->LocationId;
-    }
-    /**
-     * Set LocationId value
-     * @param string $locationId
-     * @return \Arkitecht\FedEx\Structs\HoldAtLocationDetail
-     */
-    public function setLocationId($locationId = null)
-    {
-        $this->LocationId = $locationId;
-        return $this;
-    }
-    /**
-     * Get LocationNumber value
-     * @return int|null
-     */
-    public function getLocationNumber()
-    {
-        return $this->LocationNumber;
-    }
-    /**
-     * Set LocationNumber value
-     * @param int $locationNumber
-     * @return \Arkitecht\FedEx\Structs\HoldAtLocationDetail
-     */
-    public function setLocationNumber($locationNumber = null)
-    {
-        $this->LocationNumber = $locationNumber;
         return $this;
     }
     /**

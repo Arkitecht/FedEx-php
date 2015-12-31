@@ -11,6 +11,13 @@ use \WsdlToPhp\PackageBase\AbstractStructBase;
 class DocTabContentBarcoded extends AbstractStructBase
 {
     /**
+     * The Specification
+     * Meta informations extracted from the WSDL
+     * - minOccurs: 1
+     * @var \Arkitecht\FedEx\Structs\DocTabZoneSpecification
+     */
+    public $Specification;
+    /**
      * The Symbology
      * Meta informations extracted from the WSDL
      * - minOccurs: 0
@@ -19,24 +26,35 @@ class DocTabContentBarcoded extends AbstractStructBase
      */
     public $Symbology;
     /**
-     * The Specification
-     * Meta informations extracted from the WSDL
-     * - minOccurs: 0
-     * @var \Arkitecht\FedEx\Structs\DocTabZoneSpecification
-     */
-    public $Specification;
-    /**
      * Constructor method for DocTabContentBarcoded
-     * @uses DocTabContentBarcoded::setSymbology()
      * @uses DocTabContentBarcoded::setSpecification()
-     * @param string $symbology
+     * @uses DocTabContentBarcoded::setSymbology()
      * @param \Arkitecht\FedEx\Structs\DocTabZoneSpecification $specification
+     * @param string $symbology
      */
-    public function __construct($symbology = null, \Arkitecht\FedEx\Structs\DocTabZoneSpecification $specification = null)
+    public function __construct(\Arkitecht\FedEx\Structs\DocTabZoneSpecification $specification = null, $symbology = null)
     {
         $this
-            ->setSymbology($symbology)
-            ->setSpecification($specification);
+            ->setSpecification($specification)
+            ->setSymbology($symbology);
+    }
+    /**
+     * Get Specification value
+     * @return \Arkitecht\FedEx\Structs\DocTabZoneSpecification
+     */
+    public function getSpecification()
+    {
+        return $this->Specification;
+    }
+    /**
+     * Set Specification value
+     * @param \Arkitecht\FedEx\Structs\DocTabZoneSpecification $specification
+     * @return \Arkitecht\FedEx\Structs\DocTabContentBarcoded
+     */
+    public function setSpecification(\Arkitecht\FedEx\Structs\DocTabZoneSpecification $specification = null)
+    {
+        $this->Specification = $specification;
+        return $this;
     }
     /**
      * Get Symbology value
@@ -59,24 +77,6 @@ class DocTabContentBarcoded extends AbstractStructBase
             throw new \InvalidArgumentException(sprintf('Value "%s" is invalid, please use one of: %s', $symbology, implode(', ', \Arkitecht\FedEx\Enums\BarcodeSymbologyType::getValidValues())), __LINE__);
         }
         $this->Symbology = $symbology;
-        return $this;
-    }
-    /**
-     * Get Specification value
-     * @return \Arkitecht\FedEx\Structs\DocTabZoneSpecification|null
-     */
-    public function getSpecification()
-    {
-        return $this->Specification;
-    }
-    /**
-     * Set Specification value
-     * @param \Arkitecht\FedEx\Structs\DocTabZoneSpecification $specification
-     * @return \Arkitecht\FedEx\Structs\DocTabContentBarcoded
-     */
-    public function setSpecification(\Arkitecht\FedEx\Structs\DocTabZoneSpecification $specification = null)
-    {
-        $this->Specification = $specification;
         return $this;
     }
     /**

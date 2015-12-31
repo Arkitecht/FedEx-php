@@ -6,6 +6,8 @@ use \WsdlToPhp\PackageBase\AbstractStructBase;
 
 /**
  * This class stands for LabelSpecification Structs
+ * Meta informations extracted from the WSDL
+ * - documentation: Description of shipping label to be returned in the reply
  * @subpackage Structs
  */
 class LabelSpecification extends AbstractStructBase
@@ -13,13 +15,25 @@ class LabelSpecification extends AbstractStructBase
     /**
      * The LabelFormatType
      * Meta informations extracted from the WSDL
-     * - minOccurs: 0
+     * - documentation: Specify type of label to be returned
+     * - minOccurs: 1
      * @var string
      */
     public $LabelFormatType;
     /**
+     * The Dispositions
+     * Meta informations extracted from the WSDL
+     * - documentation: Specifies how to create, organize, and return the document.
+     * - maxOccurs: unbounded
+     * - minOccurs: 0
+     * - documentation: Each occurrence of this class specifies a particular way in which a kind of shipping document is to be produced and provided.
+     * @var \Arkitecht\FedEx\Structs\ShippingDocumentDispositionDetail
+     */
+    public $Dispositions;
+    /**
      * The ImageType
      * Meta informations extracted from the WSDL
+     * - documentation: Specifies the image format used for a shipping document.
      * - minOccurs: 0
      * - documentation: Specifies the image format used for a shipping document.
      * @var string
@@ -28,6 +42,7 @@ class LabelSpecification extends AbstractStructBase
     /**
      * The LabelStockType
      * Meta informations extracted from the WSDL
+     * - documentation: For thermal printer lables this indicates the size of the label and the location of the doc tab if present.
      * - minOccurs: 0
      * @var string
      */
@@ -35,18 +50,12 @@ class LabelSpecification extends AbstractStructBase
     /**
      * The LabelPrintingOrientation
      * Meta informations extracted from the WSDL
+     * - documentation: This indicates if the top or bottom of the label comes out of the printer first.
      * - minOccurs: 0
+     * - documentation: This indicates if the top or bottom of the label comes out of the printer first.
      * @var string
      */
     public $LabelPrintingOrientation;
-    /**
-     * The LabelRotation
-     * Meta informations extracted from the WSDL
-     * - minOccurs: 0
-     * - documentation: Relative to normal orientation for the printer.
-     * @var string
-     */
-    public $LabelRotation;
     /**
      * The LabelOrder
      * Meta informations extracted from the WSDL
@@ -59,6 +68,7 @@ class LabelSpecification extends AbstractStructBase
     /**
      * The PrintedLabelOrigin
      * Meta informations extracted from the WSDL
+     * - documentation: If present, this contact and address information will replace the return address information on the label.
      * - minOccurs: 0
      * @var \Arkitecht\FedEx\Structs\ContactAndAddress
      */
@@ -66,6 +76,7 @@ class LabelSpecification extends AbstractStructBase
     /**
      * The CustomerSpecifiedDetail
      * Meta informations extracted from the WSDL
+     * - documentation: Allows customer-specified control of label content.
      * - minOccurs: 0
      * - documentation: Allows customer-specified control of label content.
      * @var \Arkitecht\FedEx\Structs\CustomerSpecifiedLabelDetail
@@ -74,38 +85,38 @@ class LabelSpecification extends AbstractStructBase
     /**
      * Constructor method for LabelSpecification
      * @uses LabelSpecification::setLabelFormatType()
+     * @uses LabelSpecification::setDispositions()
      * @uses LabelSpecification::setImageType()
      * @uses LabelSpecification::setLabelStockType()
      * @uses LabelSpecification::setLabelPrintingOrientation()
-     * @uses LabelSpecification::setLabelRotation()
      * @uses LabelSpecification::setLabelOrder()
      * @uses LabelSpecification::setPrintedLabelOrigin()
      * @uses LabelSpecification::setCustomerSpecifiedDetail()
      * @param string $labelFormatType
+     * @param \Arkitecht\FedEx\Structs\ShippingDocumentDispositionDetail $dispositions
      * @param string $imageType
      * @param string $labelStockType
      * @param string $labelPrintingOrientation
-     * @param string $labelRotation
      * @param string $labelOrder
      * @param \Arkitecht\FedEx\Structs\ContactAndAddress $printedLabelOrigin
      * @param \Arkitecht\FedEx\Structs\CustomerSpecifiedLabelDetail
      * $customerSpecifiedDetail
      */
-    public function __construct($labelFormatType = null, $imageType = null, $labelStockType = null, $labelPrintingOrientation = null, $labelRotation = null, $labelOrder = null, \Arkitecht\FedEx\Structs\ContactAndAddress $printedLabelOrigin = null, \Arkitecht\FedEx\Structs\CustomerSpecifiedLabelDetail $customerSpecifiedDetail = null)
+    public function __construct($labelFormatType = null, \Arkitecht\FedEx\Structs\ShippingDocumentDispositionDetail $dispositions = null, $imageType = null, $labelStockType = null, $labelPrintingOrientation = null, $labelOrder = null, \Arkitecht\FedEx\Structs\ContactAndAddress $printedLabelOrigin = null, \Arkitecht\FedEx\Structs\CustomerSpecifiedLabelDetail $customerSpecifiedDetail = null)
     {
         $this
             ->setLabelFormatType($labelFormatType)
+            ->setDispositions($dispositions)
             ->setImageType($imageType)
             ->setLabelStockType($labelStockType)
             ->setLabelPrintingOrientation($labelPrintingOrientation)
-            ->setLabelRotation($labelRotation)
             ->setLabelOrder($labelOrder)
             ->setPrintedLabelOrigin($printedLabelOrigin)
             ->setCustomerSpecifiedDetail($customerSpecifiedDetail);
     }
     /**
      * Get LabelFormatType value
-     * @return string|null
+     * @return string
      */
     public function getLabelFormatType()
     {
@@ -124,6 +135,24 @@ class LabelSpecification extends AbstractStructBase
             throw new \InvalidArgumentException(sprintf('Value "%s" is invalid, please use one of: %s', $labelFormatType, implode(', ', \Arkitecht\FedEx\Enums\LabelFormatType::getValidValues())), __LINE__);
         }
         $this->LabelFormatType = $labelFormatType;
+        return $this;
+    }
+    /**
+     * Get Dispositions value
+     * @return \Arkitecht\FedEx\Structs\ShippingDocumentDispositionDetail|null
+     */
+    public function getDispositions()
+    {
+        return $this->Dispositions;
+    }
+    /**
+     * Set Dispositions value
+     * @param \Arkitecht\FedEx\Structs\ShippingDocumentDispositionDetail $dispositions
+     * @return \Arkitecht\FedEx\Structs\LabelSpecification
+     */
+    public function setDispositions(\Arkitecht\FedEx\Structs\ShippingDocumentDispositionDetail $dispositions = null)
+    {
+        $this->Dispositions = $dispositions;
         return $this;
     }
     /**
@@ -193,29 +222,6 @@ class LabelSpecification extends AbstractStructBase
             throw new \InvalidArgumentException(sprintf('Value "%s" is invalid, please use one of: %s', $labelPrintingOrientation, implode(', ', \Arkitecht\FedEx\Enums\LabelPrintingOrientationType::getValidValues())), __LINE__);
         }
         $this->LabelPrintingOrientation = $labelPrintingOrientation;
-        return $this;
-    }
-    /**
-     * Get LabelRotation value
-     * @return string|null
-     */
-    public function getLabelRotation()
-    {
-        return $this->LabelRotation;
-    }
-    /**
-     * Set LabelRotation value
-     * @uses \Arkitecht\FedEx\Enums\LabelRotationType::valueIsValid()
-     * @uses \Arkitecht\FedEx\Enums\LabelRotationType::getValidValues()
-     * @param string $labelRotation
-     * @return \Arkitecht\FedEx\Structs\LabelSpecification
-     */
-    public function setLabelRotation($labelRotation = null)
-    {
-        if (!\Arkitecht\FedEx\Enums\LabelRotationType::valueIsValid($labelRotation)) {
-            throw new \InvalidArgumentException(sprintf('Value "%s" is invalid, please use one of: %s', $labelRotation, implode(', ', \Arkitecht\FedEx\Enums\LabelRotationType::getValidValues())), __LINE__);
-        }
-        $this->LabelRotation = $labelRotation;
         return $this;
     }
     /**

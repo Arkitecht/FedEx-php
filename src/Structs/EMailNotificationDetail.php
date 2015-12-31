@@ -13,6 +13,24 @@ use \WsdlToPhp\PackageBase\AbstractStructBase;
 class EMailNotificationDetail extends AbstractStructBase
 {
     /**
+     * The Recipients
+     * Meta informations extracted from the WSDL
+     * - documentation: Information describing the destination of the email, format of the email and events to be notified on
+     * - maxOccurs: 6
+     * - minOccurs: 1
+     * - documentation: The descriptive data for a FedEx email notification recipient.
+     * @var \Arkitecht\FedEx\Structs\EMailNotificationRecipient
+     */
+    public $Recipients;
+    /**
+     * The AggregationType
+     * Meta informations extracted from the WSDL
+     * - documentation: Specifies whether/how email notifications are grouped.
+     * - minOccurs: 0
+     * @var string
+     */
+    public $AggregationType;
+    /**
      * The PersonalMessage
      * Meta informations extracted from the WSDL
      * - documentation: A message that will be included in the email notifications
@@ -21,26 +39,61 @@ class EMailNotificationDetail extends AbstractStructBase
      */
     public $PersonalMessage;
     /**
-     * The Recipients
-     * Meta informations extracted from the WSDL
-     * - documentation: Information describing the destination of the email, format of the email and events to be notified on
-     * - maxOccurs: unbounded
-     * - minOccurs: 0
-     * @var \Arkitecht\FedEx\Structs\EMailNotificationRecipient
-     */
-    public $Recipients;
-    /**
      * Constructor method for EMailNotificationDetail
-     * @uses EMailNotificationDetail::setPersonalMessage()
      * @uses EMailNotificationDetail::setRecipients()
-     * @param string $personalMessage
+     * @uses EMailNotificationDetail::setAggregationType()
+     * @uses EMailNotificationDetail::setPersonalMessage()
      * @param \Arkitecht\FedEx\Structs\EMailNotificationRecipient $recipients
+     * @param string $aggregationType
+     * @param string $personalMessage
      */
-    public function __construct($personalMessage = null, \Arkitecht\FedEx\Structs\EMailNotificationRecipient $recipients = null)
+    public function __construct(\Arkitecht\FedEx\Structs\EMailNotificationRecipient $recipients = null, $aggregationType = null, $personalMessage = null)
     {
         $this
-            ->setPersonalMessage($personalMessage)
-            ->setRecipients($recipients);
+            ->setRecipients($recipients)
+            ->setAggregationType($aggregationType)
+            ->setPersonalMessage($personalMessage);
+    }
+    /**
+     * Get Recipients value
+     * @return \Arkitecht\FedEx\Structs\EMailNotificationRecipient
+     */
+    public function getRecipients()
+    {
+        return $this->Recipients;
+    }
+    /**
+     * Set Recipients value
+     * @param \Arkitecht\FedEx\Structs\EMailNotificationRecipient $recipients
+     * @return \Arkitecht\FedEx\Structs\EMailNotificationDetail
+     */
+    public function setRecipients(\Arkitecht\FedEx\Structs\EMailNotificationRecipient $recipients = null)
+    {
+        $this->Recipients = $recipients;
+        return $this;
+    }
+    /**
+     * Get AggregationType value
+     * @return string|null
+     */
+    public function getAggregationType()
+    {
+        return $this->AggregationType;
+    }
+    /**
+     * Set AggregationType value
+     * @uses \Arkitecht\FedEx\Enums\EMailNotificationAggregationType::valueIsValid()
+     * @uses \Arkitecht\FedEx\Enums\EMailNotificationAggregationType::getValidValues()
+     * @param string $aggregationType
+     * @return \Arkitecht\FedEx\Structs\EMailNotificationDetail
+     */
+    public function setAggregationType($aggregationType = null)
+    {
+        if (!\Arkitecht\FedEx\Enums\EMailNotificationAggregationType::valueIsValid($aggregationType)) {
+            throw new \InvalidArgumentException(sprintf('Value "%s" is invalid, please use one of: %s', $aggregationType, implode(', ', \Arkitecht\FedEx\Enums\EMailNotificationAggregationType::getValidValues())), __LINE__);
+        }
+        $this->AggregationType = $aggregationType;
+        return $this;
     }
     /**
      * Get PersonalMessage value
@@ -58,24 +111,6 @@ class EMailNotificationDetail extends AbstractStructBase
     public function setPersonalMessage($personalMessage = null)
     {
         $this->PersonalMessage = $personalMessage;
-        return $this;
-    }
-    /**
-     * Get Recipients value
-     * @return \Arkitecht\FedEx\Structs\EMailNotificationRecipient|null
-     */
-    public function getRecipients()
-    {
-        return $this->Recipients;
-    }
-    /**
-     * Set Recipients value
-     * @param \Arkitecht\FedEx\Structs\EMailNotificationRecipient $recipients
-     * @return \Arkitecht\FedEx\Structs\EMailNotificationDetail
-     */
-    public function setRecipients(\Arkitecht\FedEx\Structs\EMailNotificationRecipient $recipients = null)
-    {
-        $this->Recipients = $recipients;
         return $this;
     }
     /**

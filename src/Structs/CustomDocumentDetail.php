@@ -26,6 +26,7 @@ class CustomDocumentDetail extends AbstractStructBase
      * Meta informations extracted from the WSDL
      * - documentation: Applicable only to documents produced on thermal printers with roll stock.
      * - minOccurs: 0
+     * - documentation: This indicates if the top or bottom of the label comes out of the printer first.
      * @var string
      */
     public $LabelPrintingOrientation;
@@ -47,6 +48,22 @@ class CustomDocumentDetail extends AbstractStructBase
      */
     public $SpecificationId;
     /**
+     * The CustomDocumentIdentifier
+     * Meta informations extracted from the WSDL
+     * - documentation: Identifies the individual document specified by the client.
+     * - minOccurs: 0
+     * @var string
+     */
+    public $CustomDocumentIdentifier;
+    /**
+     * The DocTabContent
+     * Meta informations extracted from the WSDL
+     * - documentation: If provided, thermal documents will include specified doc tab content. If omitted, document will be produced without doc tab content.
+     * - minOccurs: 0
+     * @var \Arkitecht\FedEx\Structs\DocTabContent
+     */
+    public $DocTabContent;
+    /**
      * The CustomContent
      * Meta informations extracted from the WSDL
      * - minOccurs: 0
@@ -59,20 +76,26 @@ class CustomDocumentDetail extends AbstractStructBase
      * @uses CustomDocumentDetail::setLabelPrintingOrientation()
      * @uses CustomDocumentDetail::setLabelRotation()
      * @uses CustomDocumentDetail::setSpecificationId()
+     * @uses CustomDocumentDetail::setCustomDocumentIdentifier()
+     * @uses CustomDocumentDetail::setDocTabContent()
      * @uses CustomDocumentDetail::setCustomContent()
      * @param \Arkitecht\FedEx\Structs\ShippingDocumentFormat $format
      * @param string $labelPrintingOrientation
      * @param string $labelRotation
      * @param string $specificationId
+     * @param string $customDocumentIdentifier
+     * @param \Arkitecht\FedEx\Structs\DocTabContent $docTabContent
      * @param \Arkitecht\FedEx\Structs\CustomLabelDetail $customContent
      */
-    public function __construct(\Arkitecht\FedEx\Structs\ShippingDocumentFormat $format = null, $labelPrintingOrientation = null, $labelRotation = null, $specificationId = null, \Arkitecht\FedEx\Structs\CustomLabelDetail $customContent = null)
+    public function __construct(\Arkitecht\FedEx\Structs\ShippingDocumentFormat $format = null, $labelPrintingOrientation = null, $labelRotation = null, $specificationId = null, $customDocumentIdentifier = null, \Arkitecht\FedEx\Structs\DocTabContent $docTabContent = null, \Arkitecht\FedEx\Structs\CustomLabelDetail $customContent = null)
     {
         $this
             ->setFormat($format)
             ->setLabelPrintingOrientation($labelPrintingOrientation)
             ->setLabelRotation($labelRotation)
             ->setSpecificationId($specificationId)
+            ->setCustomDocumentIdentifier($customDocumentIdentifier)
+            ->setDocTabContent($docTabContent)
             ->setCustomContent($customContent);
     }
     /**
@@ -155,6 +178,42 @@ class CustomDocumentDetail extends AbstractStructBase
     public function setSpecificationId($specificationId = null)
     {
         $this->SpecificationId = $specificationId;
+        return $this;
+    }
+    /**
+     * Get CustomDocumentIdentifier value
+     * @return string|null
+     */
+    public function getCustomDocumentIdentifier()
+    {
+        return $this->CustomDocumentIdentifier;
+    }
+    /**
+     * Set CustomDocumentIdentifier value
+     * @param string $customDocumentIdentifier
+     * @return \Arkitecht\FedEx\Structs\CustomDocumentDetail
+     */
+    public function setCustomDocumentIdentifier($customDocumentIdentifier = null)
+    {
+        $this->CustomDocumentIdentifier = $customDocumentIdentifier;
+        return $this;
+    }
+    /**
+     * Get DocTabContent value
+     * @return \Arkitecht\FedEx\Structs\DocTabContent|null
+     */
+    public function getDocTabContent()
+    {
+        return $this->DocTabContent;
+    }
+    /**
+     * Set DocTabContent value
+     * @param \Arkitecht\FedEx\Structs\DocTabContent $docTabContent
+     * @return \Arkitecht\FedEx\Structs\CustomDocumentDetail
+     */
+    public function setDocTabContent(\Arkitecht\FedEx\Structs\DocTabContent $docTabContent = null)
+    {
+        $this->DocTabContent = $docTabContent;
         return $this;
     }
     /**

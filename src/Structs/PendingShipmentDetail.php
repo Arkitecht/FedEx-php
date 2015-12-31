@@ -15,7 +15,9 @@ class PendingShipmentDetail extends AbstractStructBase
     /**
      * The Type
      * Meta informations extracted from the WSDL
-     * - minOccurs: 0
+     * - documentation: Identifies the type of FedEx pending shipment
+     * - minOccurs: 1
+     * - documentation: Identifies the type of service for a pending shipment.
      * @var string
      */
     public $Type;
@@ -32,6 +34,7 @@ class PendingShipmentDetail extends AbstractStructBase
      * Meta informations extracted from the WSDL
      * - documentation: Only used with type of EMAIL.
      * - minOccurs: 0
+     * - documentation: Describes specific information about the email label shipment.
      * @var \Arkitecht\FedEx\Structs\EMailLabelDetail
      */
     public $EmailLabelDetail;
@@ -51,12 +54,22 @@ class PendingShipmentDetail extends AbstractStructBase
      */
     public $RecommendedDocumentSpecification;
     /**
+     * The DocumentReferences
+     * Meta informations extracted from the WSDL
+     * - documentation: Upload document details provided by the initator of the shipment.
+     * - maxOccurs: unbounded
+     * - minOccurs: 0
+     * @var \Arkitecht\FedEx\Structs\UploadDocumentReferenceDetail
+     */
+    public $DocumentReferences;
+    /**
      * Constructor method for PendingShipmentDetail
      * @uses PendingShipmentDetail::setType()
      * @uses PendingShipmentDetail::setExpirationDate()
      * @uses PendingShipmentDetail::setEmailLabelDetail()
      * @uses PendingShipmentDetail::setProcessingOptions()
      * @uses PendingShipmentDetail::setRecommendedDocumentSpecification()
+     * @uses PendingShipmentDetail::setDocumentReferences()
      * @param string $type
      * @param date $expirationDate
      * @param \Arkitecht\FedEx\Structs\EMailLabelDetail $emailLabelDetail
@@ -64,19 +77,22 @@ class PendingShipmentDetail extends AbstractStructBase
      * $processingOptions
      * @param \Arkitecht\FedEx\Structs\RecommendedDocumentSpecification
      * $recommendedDocumentSpecification
+     * @param \Arkitecht\FedEx\Structs\UploadDocumentReferenceDetail
+     * $documentReferences
      */
-    public function __construct($type = null, $expirationDate = null, \Arkitecht\FedEx\Structs\EMailLabelDetail $emailLabelDetail = null, \Arkitecht\FedEx\Structs\PendingShipmentProcessingOptionsRequested $processingOptions = null, \Arkitecht\FedEx\Structs\RecommendedDocumentSpecification $recommendedDocumentSpecification = null)
+    public function __construct($type = null, $expirationDate = null, \Arkitecht\FedEx\Structs\EMailLabelDetail $emailLabelDetail = null, \Arkitecht\FedEx\Structs\PendingShipmentProcessingOptionsRequested $processingOptions = null, \Arkitecht\FedEx\Structs\RecommendedDocumentSpecification $recommendedDocumentSpecification = null, \Arkitecht\FedEx\Structs\UploadDocumentReferenceDetail $documentReferences = null)
     {
         $this
             ->setType($type)
             ->setExpirationDate($expirationDate)
             ->setEmailLabelDetail($emailLabelDetail)
             ->setProcessingOptions($processingOptions)
-            ->setRecommendedDocumentSpecification($recommendedDocumentSpecification);
+            ->setRecommendedDocumentSpecification($recommendedDocumentSpecification)
+            ->setDocumentReferences($documentReferences);
     }
     /**
      * Get Type value
-     * @return string|null
+     * @return string
      */
     public function getType()
     {
@@ -169,6 +185,25 @@ class PendingShipmentDetail extends AbstractStructBase
     public function setRecommendedDocumentSpecification(\Arkitecht\FedEx\Structs\RecommendedDocumentSpecification $recommendedDocumentSpecification = null)
     {
         $this->RecommendedDocumentSpecification = $recommendedDocumentSpecification;
+        return $this;
+    }
+    /**
+     * Get DocumentReferences value
+     * @return \Arkitecht\FedEx\Structs\UploadDocumentReferenceDetail|null
+     */
+    public function getDocumentReferences()
+    {
+        return $this->DocumentReferences;
+    }
+    /**
+     * Set DocumentReferences value
+     * @param \Arkitecht\FedEx\Structs\UploadDocumentReferenceDetail
+     * $documentReferences
+     * @return \Arkitecht\FedEx\Structs\PendingShipmentDetail
+     */
+    public function setDocumentReferences(\Arkitecht\FedEx\Structs\UploadDocumentReferenceDetail $documentReferences = null)
+    {
+        $this->DocumentReferences = $documentReferences;
         return $this;
     }
     /**

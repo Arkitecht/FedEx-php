@@ -18,7 +18,7 @@ class CommercialInvoice extends AbstractStructBase
      * The Comments
      * Meta informations extracted from the WSDL
      * - documentation: Any comments that need to be communicated about this shipment.
-     * - maxOccurs: unbounded
+     * - maxOccurs: 99
      * - minOccurs: 0
      * @var string
      */
@@ -28,6 +28,7 @@ class CommercialInvoice extends AbstractStructBase
      * Meta informations extracted from the WSDL
      * - documentation: Any freight charges that are associated with this shipment.
      * - minOccurs: 0
+     * - documentation: The descriptive data for the medium of exchange for FedEx services.
      * @var \Arkitecht\FedEx\Structs\Money
      */
     public $FreightCharge;
@@ -36,6 +37,7 @@ class CommercialInvoice extends AbstractStructBase
      * Meta informations extracted from the WSDL
      * - documentation: Any taxes or miscellaneous charges(other than Freight charges or Insurance charges) that are associated with this shipment.
      * - minOccurs: 0
+     * - documentation: The descriptive data for the medium of exchange for FedEx services.
      * @var \Arkitecht\FedEx\Structs\Money
      */
     public $TaxesOrMiscellaneousCharge;
@@ -52,6 +54,7 @@ class CommercialInvoice extends AbstractStructBase
      * Meta informations extracted from the WSDL
      * - documentation: Any packing costs that are associated with this shipment.
      * - minOccurs: 0
+     * - documentation: The descriptive data for the medium of exchange for FedEx services.
      * @var \Arkitecht\FedEx\Structs\Money
      */
     public $PackingCosts;
@@ -60,6 +63,7 @@ class CommercialInvoice extends AbstractStructBase
      * Meta informations extracted from the WSDL
      * - documentation: Any handling costs that are associated with this shipment.
      * - minOccurs: 0
+     * - documentation: The descriptive data for the medium of exchange for FedEx services.
      * @var \Arkitecht\FedEx\Structs\Money
      */
     public $HandlingCosts;
@@ -92,9 +96,20 @@ class CommercialInvoice extends AbstractStructBase
      * Meta informations extracted from the WSDL
      * - documentation: The reason for the shipment. Note: SOLD is not a valid purpose for a Proforma Invoice.
      * - minOccurs: 0
+     * - documentation: Test for the Commercial Invoice. Note that Sold is not a valid Purpose for a Proforma Invoice.
      * @var string
      */
     public $Purpose;
+    /**
+     * The CustomerReferences
+     * Meta informations extracted from the WSDL
+     * - documentation: Additional customer reference data.
+     * - maxOccurs: unbounded
+     * - minOccurs: 0
+     * - documentation: Reference information to be associated with this package.
+     * @var \Arkitecht\FedEx\Structs\CustomerReference
+     */
+    public $CustomerReferences;
     /**
      * The OriginatorName
      * Meta informations extracted from the WSDL
@@ -123,6 +138,7 @@ class CommercialInvoice extends AbstractStructBase
      * @uses CommercialInvoice::setDeclarationStatement()
      * @uses CommercialInvoice::setPaymentTerms()
      * @uses CommercialInvoice::setPurpose()
+     * @uses CommercialInvoice::setCustomerReferences()
      * @uses CommercialInvoice::setOriginatorName()
      * @uses CommercialInvoice::setTermsOfSale()
      * @param string $comments
@@ -135,10 +151,11 @@ class CommercialInvoice extends AbstractStructBase
      * @param string $declarationStatement
      * @param string $paymentTerms
      * @param string $purpose
+     * @param \Arkitecht\FedEx\Structs\CustomerReference $customerReferences
      * @param string $originatorName
      * @param string $termsOfSale
      */
-    public function __construct($comments = null, \Arkitecht\FedEx\Structs\Money $freightCharge = null, \Arkitecht\FedEx\Structs\Money $taxesOrMiscellaneousCharge = null, $taxesOrMiscellaneousChargeType = null, \Arkitecht\FedEx\Structs\Money $packingCosts = null, \Arkitecht\FedEx\Structs\Money $handlingCosts = null, $specialInstructions = null, $declarationStatement = null, $paymentTerms = null, $purpose = null, $originatorName = null, $termsOfSale = null)
+    public function __construct($comments = null, \Arkitecht\FedEx\Structs\Money $freightCharge = null, \Arkitecht\FedEx\Structs\Money $taxesOrMiscellaneousCharge = null, $taxesOrMiscellaneousChargeType = null, \Arkitecht\FedEx\Structs\Money $packingCosts = null, \Arkitecht\FedEx\Structs\Money $handlingCosts = null, $specialInstructions = null, $declarationStatement = null, $paymentTerms = null, $purpose = null, \Arkitecht\FedEx\Structs\CustomerReference $customerReferences = null, $originatorName = null, $termsOfSale = null)
     {
         $this
             ->setComments($comments)
@@ -151,6 +168,7 @@ class CommercialInvoice extends AbstractStructBase
             ->setDeclarationStatement($declarationStatement)
             ->setPaymentTerms($paymentTerms)
             ->setPurpose($purpose)
+            ->setCustomerReferences($customerReferences)
             ->setOriginatorName($originatorName)
             ->setTermsOfSale($termsOfSale);
     }
@@ -342,6 +360,24 @@ class CommercialInvoice extends AbstractStructBase
             throw new \InvalidArgumentException(sprintf('Value "%s" is invalid, please use one of: %s', $purpose, implode(', ', \Arkitecht\FedEx\Enums\PurposeOfShipmentType::getValidValues())), __LINE__);
         }
         $this->Purpose = $purpose;
+        return $this;
+    }
+    /**
+     * Get CustomerReferences value
+     * @return \Arkitecht\FedEx\Structs\CustomerReference|null
+     */
+    public function getCustomerReferences()
+    {
+        return $this->CustomerReferences;
+    }
+    /**
+     * Set CustomerReferences value
+     * @param \Arkitecht\FedEx\Structs\CustomerReference $customerReferences
+     * @return \Arkitecht\FedEx\Structs\CommercialInvoice
+     */
+    public function setCustomerReferences(\Arkitecht\FedEx\Structs\CustomerReference $customerReferences = null)
+    {
+        $this->CustomerReferences = $customerReferences;
         return $this;
     }
     /**

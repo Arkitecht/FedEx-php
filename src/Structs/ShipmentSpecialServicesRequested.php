@@ -19,12 +19,14 @@ class ShipmentSpecialServicesRequested extends AbstractStructBase
      * - documentation: The types of all special services requested for the enclosing shipment (or other shipment-level transaction).
      * - maxOccurs: unbounded
      * - minOccurs: 0
+     * - documentation: Identifies the collection of special service offered by FedEx. BROKER_SELECT_OPTION should be used for Express shipments only.
      * @var string
      */
     public $SpecialServiceTypes;
     /**
      * The CodDetail
      * Meta informations extracted from the WSDL
+     * - documentation: Descriptive data required for a FedEx COD (Collect-On-Delivery) shipment. This element is required when SpecialServiceType.COD is present in the SpecialServiceTypes collection.
      * - minOccurs: 0
      * @var \Arkitecht\FedEx\Structs\CodDetail
      */
@@ -39,6 +41,8 @@ class ShipmentSpecialServicesRequested extends AbstractStructBase
     /**
      * The HoldAtLocationDetail
      * Meta informations extracted from the WSDL
+     * - documentation: Descriptive data required for a FedEx shipment that is to be held at the destination FedEx location for pickup by the recipient. This element is required when SpecialServiceType.HOLD_AT_LOCATION is present in the SpecialServiceTypes
+     * collection.
      * - minOccurs: 0
      * @var \Arkitecht\FedEx\Structs\HoldAtLocationDetail
      */
@@ -46,6 +50,7 @@ class ShipmentSpecialServicesRequested extends AbstractStructBase
     /**
      * The EMailNotificationDetail
      * Meta informations extracted from the WSDL
+     * - documentation: Descriptive data required for FedEx to provide email notification to the customer regarding the shipment. This element is required when SpecialServiceType.EMAIL_NOTIFICATION is present in the SpecialServiceTypes collection.
      * - minOccurs: 0
      * @var \Arkitecht\FedEx\Structs\EMailNotificationDetail
      */
@@ -53,6 +58,7 @@ class ShipmentSpecialServicesRequested extends AbstractStructBase
     /**
      * The ReturnShipmentDetail
      * Meta informations extracted from the WSDL
+     * - documentation: The descriptive data required for FedEx Printed Return Label. This element is required when SpecialServiceType.PRINTED_RETURN_LABEL is present in the SpecialServiceTypes collection
      * - minOccurs: 0
      * @var \Arkitecht\FedEx\Structs\ReturnShipmentDetail
      */
@@ -82,6 +88,7 @@ class ShipmentSpecialServicesRequested extends AbstractStructBase
     /**
      * The ShipmentDryIceDetail
      * Meta informations extracted from the WSDL
+     * - documentation: Number of packages in this shipment which contain dry ice and the total weight of the dry ice for this shipment.
      * - minOccurs: 0
      * @var \Arkitecht\FedEx\Structs\ShipmentDryIceDetail
      */
@@ -89,17 +96,11 @@ class ShipmentSpecialServicesRequested extends AbstractStructBase
     /**
      * The HomeDeliveryPremiumDetail
      * Meta informations extracted from the WSDL
+     * - documentation: The descriptive data required for FedEx Home Delivery options. This element is required when SpecialServiceType.HOME_DELIVERY_PREMIUM is present in the SpecialServiceTypes collection
      * - minOccurs: 0
      * @var \Arkitecht\FedEx\Structs\HomeDeliveryPremiumDetail
      */
     public $HomeDeliveryPremiumDetail;
-    /**
-     * The FlatbedTrailerDetail
-     * Meta informations extracted from the WSDL
-     * - minOccurs: 0
-     * @var \Arkitecht\FedEx\Structs\FlatbedTrailerDetail
-     */
-    public $FlatbedTrailerDetail;
     /**
      * The FreightGuaranteeDetail
      * Meta informations extracted from the WSDL
@@ -138,7 +139,6 @@ class ShipmentSpecialServicesRequested extends AbstractStructBase
      * ()
      * @uses ShipmentSpecialServicesRequested::setShipmentDryIceDetail()
      * @uses ShipmentSpecialServicesRequested::setHomeDeliveryPremiumDetail()
-     * @uses ShipmentSpecialServicesRequested::setFlatbedTrailerDetail()
      * @uses ShipmentSpecialServicesRequested::setFreightGuaranteeDetail()
      * @uses ShipmentSpecialServicesRequested::setEtdDetail()
      * @uses ShipmentSpecialServicesRequested::setCustomDeliveryWindowDetail()
@@ -157,13 +157,12 @@ class ShipmentSpecialServicesRequested extends AbstractStructBase
      * @param \Arkitecht\FedEx\Structs\ShipmentDryIceDetail $shipmentDryIceDetail
      * @param \Arkitecht\FedEx\Structs\HomeDeliveryPremiumDetail
      * $homeDeliveryPremiumDetail
-     * @param \Arkitecht\FedEx\Structs\FlatbedTrailerDetail $flatbedTrailerDetail
      * @param \Arkitecht\FedEx\Structs\FreightGuaranteeDetail $freightGuaranteeDetail
      * @param \Arkitecht\FedEx\Structs\EtdDetail $etdDetail
      * @param \Arkitecht\FedEx\Structs\CustomDeliveryWindowDetail
      * $customDeliveryWindowDetail
      */
-    public function __construct($specialServiceTypes = null, \Arkitecht\FedEx\Structs\CodDetail $codDetail = null, \Arkitecht\FedEx\Structs\DeliveryOnInvoiceAcceptanceDetail $deliveryOnInvoiceAcceptanceDetail = null, \Arkitecht\FedEx\Structs\HoldAtLocationDetail $holdAtLocationDetail = null, \Arkitecht\FedEx\Structs\EMailNotificationDetail $eMailNotificationDetail = null, \Arkitecht\FedEx\Structs\ReturnShipmentDetail $returnShipmentDetail = null, \Arkitecht\FedEx\Structs\PendingShipmentDetail $pendingShipmentDetail = null, \Arkitecht\FedEx\Structs\InternationalControlledExportDetail $internationalControlledExportDetail = null, \Arkitecht\FedEx\Structs\InternationalTrafficInArmsRegulationsDetail $internationalTrafficInArmsRegulationsDetail = null, \Arkitecht\FedEx\Structs\ShipmentDryIceDetail $shipmentDryIceDetail = null, \Arkitecht\FedEx\Structs\HomeDeliveryPremiumDetail $homeDeliveryPremiumDetail = null, \Arkitecht\FedEx\Structs\FlatbedTrailerDetail $flatbedTrailerDetail = null, \Arkitecht\FedEx\Structs\FreightGuaranteeDetail $freightGuaranteeDetail = null, \Arkitecht\FedEx\Structs\EtdDetail $etdDetail = null, \Arkitecht\FedEx\Structs\CustomDeliveryWindowDetail $customDeliveryWindowDetail = null)
+    public function __construct($specialServiceTypes = null, \Arkitecht\FedEx\Structs\CodDetail $codDetail = null, \Arkitecht\FedEx\Structs\DeliveryOnInvoiceAcceptanceDetail $deliveryOnInvoiceAcceptanceDetail = null, \Arkitecht\FedEx\Structs\HoldAtLocationDetail $holdAtLocationDetail = null, \Arkitecht\FedEx\Structs\EMailNotificationDetail $eMailNotificationDetail = null, \Arkitecht\FedEx\Structs\ReturnShipmentDetail $returnShipmentDetail = null, \Arkitecht\FedEx\Structs\PendingShipmentDetail $pendingShipmentDetail = null, \Arkitecht\FedEx\Structs\InternationalControlledExportDetail $internationalControlledExportDetail = null, \Arkitecht\FedEx\Structs\InternationalTrafficInArmsRegulationsDetail $internationalTrafficInArmsRegulationsDetail = null, \Arkitecht\FedEx\Structs\ShipmentDryIceDetail $shipmentDryIceDetail = null, \Arkitecht\FedEx\Structs\HomeDeliveryPremiumDetail $homeDeliveryPremiumDetail = null, \Arkitecht\FedEx\Structs\FreightGuaranteeDetail $freightGuaranteeDetail = null, \Arkitecht\FedEx\Structs\EtdDetail $etdDetail = null, \Arkitecht\FedEx\Structs\CustomDeliveryWindowDetail $customDeliveryWindowDetail = null)
     {
         $this
             ->setSpecialServiceTypes($specialServiceTypes)
@@ -177,7 +176,6 @@ class ShipmentSpecialServicesRequested extends AbstractStructBase
             ->setInternationalTrafficInArmsRegulationsDetail($internationalTrafficInArmsRegulationsDetail)
             ->setShipmentDryIceDetail($shipmentDryIceDetail)
             ->setHomeDeliveryPremiumDetail($homeDeliveryPremiumDetail)
-            ->setFlatbedTrailerDetail($flatbedTrailerDetail)
             ->setFreightGuaranteeDetail($freightGuaranteeDetail)
             ->setEtdDetail($etdDetail)
             ->setCustomDeliveryWindowDetail($customDeliveryWindowDetail);
@@ -388,24 +386,6 @@ class ShipmentSpecialServicesRequested extends AbstractStructBase
     public function setHomeDeliveryPremiumDetail(\Arkitecht\FedEx\Structs\HomeDeliveryPremiumDetail $homeDeliveryPremiumDetail = null)
     {
         $this->HomeDeliveryPremiumDetail = $homeDeliveryPremiumDetail;
-        return $this;
-    }
-    /**
-     * Get FlatbedTrailerDetail value
-     * @return \Arkitecht\FedEx\Structs\FlatbedTrailerDetail|null
-     */
-    public function getFlatbedTrailerDetail()
-    {
-        return $this->FlatbedTrailerDetail;
-    }
-    /**
-     * Set FlatbedTrailerDetail value
-     * @param \Arkitecht\FedEx\Structs\FlatbedTrailerDetail $flatbedTrailerDetail
-     * @return \Arkitecht\FedEx\Structs\ShipmentSpecialServicesRequested
-     */
-    public function setFlatbedTrailerDetail(\Arkitecht\FedEx\Structs\FlatbedTrailerDetail $flatbedTrailerDetail = null)
-    {
-        $this->FlatbedTrailerDetail = $flatbedTrailerDetail;
         return $this;
     }
     /**

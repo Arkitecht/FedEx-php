@@ -23,6 +23,22 @@ class FreightShipmentLineItem extends AbstractStructBase
      */
     public $FreightClass;
     /**
+     * The ClassProvidedByCustomer
+     * Meta informations extracted from the WSDL
+     * - documentation: FEDEX INTERNAL USE ONLY: for FedEx system that estimate freight class from customer-provided dimensions and weight.
+     * - minOccurs: 0
+     * @var boolean
+     */
+    public $ClassProvidedByCustomer;
+    /**
+     * The HandlingUnits
+     * Meta informations extracted from the WSDL
+     * - documentation: Number of individual handling units to which this line applies. (NOTE: Total of line-item-level handling units may not balance to shipment-level total handling units.)
+     * - minOccurs: 0
+     * @var nonNegativeInteger
+     */
+    public $HandlingUnits;
+    /**
      * The Packaging
      * Meta informations extracted from the WSDL
      * - documentation: Specification of handling-unit packaging for this commodity or class line.
@@ -39,6 +55,31 @@ class FreightShipmentLineItem extends AbstractStructBase
      * @var nonNegativeInteger
      */
     public $Pieces;
+    /**
+     * The NmfcCode
+     * Meta informations extracted from the WSDL
+     * - documentation: NMFC Code for commodity.
+     * - minOccurs: 0
+     * @var string
+     */
+    public $NmfcCode;
+    /**
+     * The HazardousMaterials
+     * Meta informations extracted from the WSDL
+     * - documentation: Indicates the kind of hazardous material content in this line item.
+     * - minOccurs: 0
+     * - documentation: Indicates which kind of hazardous content is being reported.
+     * @var string
+     */
+    public $HazardousMaterials;
+    /**
+     * The PurchaseOrderNumber
+     * Meta informations extracted from the WSDL
+     * - documentation: For printed reference per line item.
+     * - minOccurs: 0
+     * @var string
+     */
+    public $PurchaseOrderNumber;
     /**
      * The Description
      * Meta informations extracted from the WSDL
@@ -58,6 +99,7 @@ class FreightShipmentLineItem extends AbstractStructBase
     /**
      * The Dimensions
      * Meta informations extracted from the WSDL
+     * - documentation: FED EX INTERNAL USE ONLY - Individual line item dimensions.
      * - minOccurs: 0
      * @var \Arkitecht\FedEx\Structs\Dimensions
      */
@@ -73,26 +115,41 @@ class FreightShipmentLineItem extends AbstractStructBase
     /**
      * Constructor method for FreightShipmentLineItem
      * @uses FreightShipmentLineItem::setFreightClass()
+     * @uses FreightShipmentLineItem::setClassProvidedByCustomer()
+     * @uses FreightShipmentLineItem::setHandlingUnits()
      * @uses FreightShipmentLineItem::setPackaging()
      * @uses FreightShipmentLineItem::setPieces()
+     * @uses FreightShipmentLineItem::setNmfcCode()
+     * @uses FreightShipmentLineItem::setHazardousMaterials()
+     * @uses FreightShipmentLineItem::setPurchaseOrderNumber()
      * @uses FreightShipmentLineItem::setDescription()
      * @uses FreightShipmentLineItem::setWeight()
      * @uses FreightShipmentLineItem::setDimensions()
      * @uses FreightShipmentLineItem::setVolume()
      * @param string $freightClass
+     * @param boolean $classProvidedByCustomer
+     * @param nonNegativeInteger $handlingUnits
      * @param string $packaging
      * @param nonNegativeInteger $pieces
+     * @param string $nmfcCode
+     * @param string $hazardousMaterials
+     * @param string $purchaseOrderNumber
      * @param string $description
      * @param \Arkitecht\FedEx\Structs\Weight $weight
      * @param \Arkitecht\FedEx\Structs\Dimensions $dimensions
      * @param \Arkitecht\FedEx\Structs\Volume $volume
      */
-    public function __construct($freightClass = null, $packaging = null, $pieces = null, $description = null, \Arkitecht\FedEx\Structs\Weight $weight = null, \Arkitecht\FedEx\Structs\Dimensions $dimensions = null, \Arkitecht\FedEx\Structs\Volume $volume = null)
+    public function __construct($freightClass = null, $classProvidedByCustomer = null, $handlingUnits = null, $packaging = null, $pieces = null, $nmfcCode = null, $hazardousMaterials = null, $purchaseOrderNumber = null, $description = null, \Arkitecht\FedEx\Structs\Weight $weight = null, \Arkitecht\FedEx\Structs\Dimensions $dimensions = null, \Arkitecht\FedEx\Structs\Volume $volume = null)
     {
         $this
             ->setFreightClass($freightClass)
+            ->setClassProvidedByCustomer($classProvidedByCustomer)
+            ->setHandlingUnits($handlingUnits)
             ->setPackaging($packaging)
             ->setPieces($pieces)
+            ->setNmfcCode($nmfcCode)
+            ->setHazardousMaterials($hazardousMaterials)
+            ->setPurchaseOrderNumber($purchaseOrderNumber)
             ->setDescription($description)
             ->setWeight($weight)
             ->setDimensions($dimensions)
@@ -119,6 +176,42 @@ class FreightShipmentLineItem extends AbstractStructBase
             throw new \InvalidArgumentException(sprintf('Value "%s" is invalid, please use one of: %s', $freightClass, implode(', ', \Arkitecht\FedEx\Enums\FreightClassType::getValidValues())), __LINE__);
         }
         $this->FreightClass = $freightClass;
+        return $this;
+    }
+    /**
+     * Get ClassProvidedByCustomer value
+     * @return boolean|null
+     */
+    public function getClassProvidedByCustomer()
+    {
+        return $this->ClassProvidedByCustomer;
+    }
+    /**
+     * Set ClassProvidedByCustomer value
+     * @param boolean $classProvidedByCustomer
+     * @return \Arkitecht\FedEx\Structs\FreightShipmentLineItem
+     */
+    public function setClassProvidedByCustomer($classProvidedByCustomer = null)
+    {
+        $this->ClassProvidedByCustomer = $classProvidedByCustomer;
+        return $this;
+    }
+    /**
+     * Get HandlingUnits value
+     * @return nonNegativeInteger|null
+     */
+    public function getHandlingUnits()
+    {
+        return $this->HandlingUnits;
+    }
+    /**
+     * Set HandlingUnits value
+     * @param nonNegativeInteger $handlingUnits
+     * @return \Arkitecht\FedEx\Structs\FreightShipmentLineItem
+     */
+    public function setHandlingUnits($handlingUnits = null)
+    {
+        $this->HandlingUnits = $handlingUnits;
         return $this;
     }
     /**
@@ -160,6 +253,65 @@ class FreightShipmentLineItem extends AbstractStructBase
     public function setPieces($pieces = null)
     {
         $this->Pieces = $pieces;
+        return $this;
+    }
+    /**
+     * Get NmfcCode value
+     * @return string|null
+     */
+    public function getNmfcCode()
+    {
+        return $this->NmfcCode;
+    }
+    /**
+     * Set NmfcCode value
+     * @param string $nmfcCode
+     * @return \Arkitecht\FedEx\Structs\FreightShipmentLineItem
+     */
+    public function setNmfcCode($nmfcCode = null)
+    {
+        $this->NmfcCode = $nmfcCode;
+        return $this;
+    }
+    /**
+     * Get HazardousMaterials value
+     * @return string|null
+     */
+    public function getHazardousMaterials()
+    {
+        return $this->HazardousMaterials;
+    }
+    /**
+     * Set HazardousMaterials value
+     * @uses \Arkitecht\FedEx\Enums\HazardousCommodityOptionType::valueIsValid()
+     * @uses \Arkitecht\FedEx\Enums\HazardousCommodityOptionType::getValidValues()
+     * @param string $hazardousMaterials
+     * @return \Arkitecht\FedEx\Structs\FreightShipmentLineItem
+     */
+    public function setHazardousMaterials($hazardousMaterials = null)
+    {
+        if (!\Arkitecht\FedEx\Enums\HazardousCommodityOptionType::valueIsValid($hazardousMaterials)) {
+            throw new \InvalidArgumentException(sprintf('Value "%s" is invalid, please use one of: %s', $hazardousMaterials, implode(', ', \Arkitecht\FedEx\Enums\HazardousCommodityOptionType::getValidValues())), __LINE__);
+        }
+        $this->HazardousMaterials = $hazardousMaterials;
+        return $this;
+    }
+    /**
+     * Get PurchaseOrderNumber value
+     * @return string|null
+     */
+    public function getPurchaseOrderNumber()
+    {
+        return $this->PurchaseOrderNumber;
+    }
+    /**
+     * Set PurchaseOrderNumber value
+     * @param string $purchaseOrderNumber
+     * @return \Arkitecht\FedEx\Structs\FreightShipmentLineItem
+     */
+    public function setPurchaseOrderNumber($purchaseOrderNumber = null)
+    {
+        $this->PurchaseOrderNumber = $purchaseOrderNumber;
         return $this;
     }
     /**

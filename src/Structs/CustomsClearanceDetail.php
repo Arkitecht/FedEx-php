@@ -38,6 +38,7 @@ class CustomsClearanceDetail extends AbstractStructBase
      * The ImporterOfRecord
      * Meta informations extracted from the WSDL
      * - minOccurs: 0
+     * - documentation: The descriptive data for a person or company entitiy doing business with FedEx.
      * @var \Arkitecht\FedEx\Structs\Party
      */
     public $ImporterOfRecord;
@@ -53,6 +54,7 @@ class CustomsClearanceDetail extends AbstractStructBase
      * The DutiesPayment
      * Meta informations extracted from the WSDL
      * - minOccurs: 0
+     * - documentation: The descriptive data for the monetary compensation given to FedEx for services rendered to the customer.
      * @var \Arkitecht\FedEx\Structs\Payment
      */
     public $DutiesPayment;
@@ -60,6 +62,7 @@ class CustomsClearanceDetail extends AbstractStructBase
      * The DocumentContent
      * Meta informations extracted from the WSDL
      * - minOccurs: 0
+     * - documentation: The type of International shipment.
      * @var string
      */
     public $DocumentContent;
@@ -67,6 +70,7 @@ class CustomsClearanceDetail extends AbstractStructBase
      * The CustomsValue
      * Meta informations extracted from the WSDL
      * - minOccurs: 0
+     * - documentation: The descriptive data for the medium of exchange for FedEx services.
      * @var \Arkitecht\FedEx\Structs\Money
      */
     public $CustomsValue;
@@ -84,6 +88,7 @@ class CustomsClearanceDetail extends AbstractStructBase
      * Meta informations extracted from the WSDL
      * - documentation: Documents amount paid to third party for coverage of shipment content.
      * - minOccurs: 0
+     * - documentation: The descriptive data for the medium of exchange for FedEx services.
      * @var \Arkitecht\FedEx\Structs\Money
      */
     public $InsuranceCharges;
@@ -106,6 +111,8 @@ class CustomsClearanceDetail extends AbstractStructBase
      * Meta informations extracted from the WSDL
      * - maxOccurs: unbounded
      * - minOccurs: 0
+     * - documentation: For international multiple piece shipments, commodity information must be passed in the Master and on each child transaction. If this shipment cotains more than four commodities line items, the four highest valued should be included
+     * in the first 4 occurances for this request.
      * @var \Arkitecht\FedEx\Structs\Commodity
      */
     public $Commodities;
@@ -121,9 +128,18 @@ class CustomsClearanceDetail extends AbstractStructBase
      * Meta informations extracted from the WSDL
      * - maxOccurs: unbounded
      * - minOccurs: 0
+     * - documentation: FOOD_OR_PERISHABLE is required by FDA/BTA; must be true for food/perishable items coming to US or PR from non-US/non-PR origin
      * @var string
      */
     public $RegulatoryControls;
+    /**
+     * The DeclarationStatementDetail
+     * Meta informations extracted from the WSDL
+     * - minOccurs: 0
+     * - documentation: This provides the information necessary to identify the different statements, declarations, acts, and/or certifications that apply to this shipment.
+     * @var \Arkitecht\FedEx\Structs\CustomsDeclarationStatementDetail
+     */
+    public $DeclarationStatementDetail;
     /**
      * Constructor method for CustomsClearanceDetail
      * @uses CustomsClearanceDetail::setBrokers()
@@ -141,6 +157,7 @@ class CustomsClearanceDetail extends AbstractStructBase
      * @uses CustomsClearanceDetail::setCommodities()
      * @uses CustomsClearanceDetail::setExportDetail()
      * @uses CustomsClearanceDetail::setRegulatoryControls()
+     * @uses CustomsClearanceDetail::setDeclarationStatementDetail()
      * @param \Arkitecht\FedEx\Structs\BrokerDetail $brokers
      * @param string $clearanceBrokerage
      * @param \Arkitecht\FedEx\Structs\CustomsOptionDetail $customsOptions
@@ -156,8 +173,10 @@ class CustomsClearanceDetail extends AbstractStructBase
      * @param \Arkitecht\FedEx\Structs\Commodity $commodities
      * @param \Arkitecht\FedEx\Structs\ExportDetail $exportDetail
      * @param string $regulatoryControls
+     * @param \Arkitecht\FedEx\Structs\CustomsDeclarationStatementDetail
+     * $declarationStatementDetail
      */
-    public function __construct(\Arkitecht\FedEx\Structs\BrokerDetail $brokers = null, $clearanceBrokerage = null, \Arkitecht\FedEx\Structs\CustomsOptionDetail $customsOptions = null, \Arkitecht\FedEx\Structs\Party $importerOfRecord = null, \Arkitecht\FedEx\Structs\RecipientCustomsId $recipientCustomsId = null, \Arkitecht\FedEx\Structs\Payment $dutiesPayment = null, $documentContent = null, \Arkitecht\FedEx\Structs\Money $customsValue = null, $freightOnValue = null, \Arkitecht\FedEx\Structs\Money $insuranceCharges = null, $partiesToTransactionAreRelated = null, \Arkitecht\FedEx\Structs\CommercialInvoice $commercialInvoice = null, \Arkitecht\FedEx\Structs\Commodity $commodities = null, \Arkitecht\FedEx\Structs\ExportDetail $exportDetail = null, $regulatoryControls = null)
+    public function __construct(\Arkitecht\FedEx\Structs\BrokerDetail $brokers = null, $clearanceBrokerage = null, \Arkitecht\FedEx\Structs\CustomsOptionDetail $customsOptions = null, \Arkitecht\FedEx\Structs\Party $importerOfRecord = null, \Arkitecht\FedEx\Structs\RecipientCustomsId $recipientCustomsId = null, \Arkitecht\FedEx\Structs\Payment $dutiesPayment = null, $documentContent = null, \Arkitecht\FedEx\Structs\Money $customsValue = null, $freightOnValue = null, \Arkitecht\FedEx\Structs\Money $insuranceCharges = null, $partiesToTransactionAreRelated = null, \Arkitecht\FedEx\Structs\CommercialInvoice $commercialInvoice = null, \Arkitecht\FedEx\Structs\Commodity $commodities = null, \Arkitecht\FedEx\Structs\ExportDetail $exportDetail = null, $regulatoryControls = null, \Arkitecht\FedEx\Structs\CustomsDeclarationStatementDetail $declarationStatementDetail = null)
     {
         $this
             ->setBrokers($brokers)
@@ -174,7 +193,8 @@ class CustomsClearanceDetail extends AbstractStructBase
             ->setCommercialInvoice($commercialInvoice)
             ->setCommodities($commodities)
             ->setExportDetail($exportDetail)
-            ->setRegulatoryControls($regulatoryControls);
+            ->setRegulatoryControls($regulatoryControls)
+            ->setDeclarationStatementDetail($declarationStatementDetail);
     }
     /**
      * Get Brokers value
@@ -464,6 +484,25 @@ class CustomsClearanceDetail extends AbstractStructBase
             throw new \InvalidArgumentException(sprintf('Value "%s" is invalid, please use one of: %s', $regulatoryControls, implode(', ', \Arkitecht\FedEx\Enums\RegulatoryControlType::getValidValues())), __LINE__);
         }
         $this->RegulatoryControls = $regulatoryControls;
+        return $this;
+    }
+    /**
+     * Get DeclarationStatementDetail value
+     * @return \Arkitecht\FedEx\Structs\CustomsDeclarationStatementDetail|null
+     */
+    public function getDeclarationStatementDetail()
+    {
+        return $this->DeclarationStatementDetail;
+    }
+    /**
+     * Set DeclarationStatementDetail value
+     * @param \Arkitecht\FedEx\Structs\CustomsDeclarationStatementDetail
+     * $declarationStatementDetail
+     * @return \Arkitecht\FedEx\Structs\CustomsClearanceDetail
+     */
+    public function setDeclarationStatementDetail(\Arkitecht\FedEx\Structs\CustomsDeclarationStatementDetail $declarationStatementDetail = null)
+    {
+        $this->DeclarationStatementDetail = $declarationStatementDetail;
         return $this;
     }
     /**

@@ -25,6 +25,14 @@ class TrackingId extends AbstractStructBase
      */
     public $FormId;
     /**
+     * The UspsApplicationId
+     * Meta informations extracted from the WSDL
+     * - documentation: For use with SmartPost tracking IDs only
+     * - minOccurs: 0
+     * @var string
+     */
+    public $UspsApplicationId;
+    /**
      * The TrackingNumber
      * Meta informations extracted from the WSDL
      * - minOccurs: 0
@@ -35,16 +43,19 @@ class TrackingId extends AbstractStructBase
      * Constructor method for TrackingId
      * @uses TrackingId::setTrackingIdType()
      * @uses TrackingId::setFormId()
+     * @uses TrackingId::setUspsApplicationId()
      * @uses TrackingId::setTrackingNumber()
      * @param string $trackingIdType
      * @param string $formId
+     * @param string $uspsApplicationId
      * @param string $trackingNumber
      */
-    public function __construct($trackingIdType = null, $formId = null, $trackingNumber = null)
+    public function __construct($trackingIdType = null, $formId = null, $uspsApplicationId = null, $trackingNumber = null)
     {
         $this
             ->setTrackingIdType($trackingIdType)
             ->setFormId($formId)
+            ->setUspsApplicationId($uspsApplicationId)
             ->setTrackingNumber($trackingNumber);
     }
     /**
@@ -86,6 +97,24 @@ class TrackingId extends AbstractStructBase
     public function setFormId($formId = null)
     {
         $this->FormId = $formId;
+        return $this;
+    }
+    /**
+     * Get UspsApplicationId value
+     * @return string|null
+     */
+    public function getUspsApplicationId()
+    {
+        return $this->UspsApplicationId;
+    }
+    /**
+     * Set UspsApplicationId value
+     * @param string $uspsApplicationId
+     * @return \Arkitecht\FedEx\Structs\TrackingId
+     */
+    public function setUspsApplicationId($uspsApplicationId = null)
+    {
+        $this->UspsApplicationId = $uspsApplicationId;
         return $this;
     }
     /**

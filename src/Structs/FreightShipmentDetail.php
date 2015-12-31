@@ -33,9 +33,20 @@ class FreightShipmentDetail extends AbstractStructBase
      * Meta informations extracted from the WSDL
      * - documentation: Used in connection with "Send Bill To" (SBT) identification of customer's account used for billing.
      * - minOccurs: 0
+     * - documentation: The descriptive data for a person or company entitiy doing business with FedEx.
      * @var \Arkitecht\FedEx\Structs\Party
      */
     public $AlternateBilling;
+    /**
+     * The PrintedReferences
+     * Meta informations extracted from the WSDL
+     * - documentation: Identification values to be printed during creation of a Freight bill of lading.
+     * - maxOccurs: unbounded
+     * - minOccurs: 0
+     * - documentation: Represents a reference identifier printed on Freight bills of lading
+     * @var \Arkitecht\FedEx\Structs\PrintedReference
+     */
+    public $PrintedReferences;
     /**
      * The Role
      * Meta informations extracted from the WSDL
@@ -58,6 +69,7 @@ class FreightShipmentDetail extends AbstractStructBase
      * Meta informations extracted from the WSDL
      * - documentation: Identifies the declared value for the shipment
      * - minOccurs: 0
+     * - documentation: The descriptive data for the medium of exchange for FedEx services.
      * @var \Arkitecht\FedEx\Structs\Money
      */
     public $DeclaredValuePerUnit;
@@ -115,6 +127,7 @@ class FreightShipmentDetail extends AbstractStructBase
      * Meta informations extracted from the WSDL
      * - documentation: Overall shipment dimensions.
      * - minOccurs: 0
+     * - documentation: The dimensions of this package and the unit type used for the measurements.
      * @var \Arkitecht\FedEx\Structs\Dimensions
      */
     public $ShipmentDimensions;
@@ -137,6 +150,14 @@ class FreightShipmentDetail extends AbstractStructBase
      */
     public $SpecialServicePayments;
     /**
+     * The HazardousMaterialsEmergencyContactNumber
+     * Meta informations extracted from the WSDL
+     * - documentation: Must be populated if any line items contain hazardous materials.
+     * - minOccurs: 0
+     * @var string
+     */
+    public $HazardousMaterialsEmergencyContactNumber;
+    /**
      * The HazardousMaterialsOfferor
      * Meta informations extracted from the WSDL
      * - minOccurs: 0
@@ -158,6 +179,7 @@ class FreightShipmentDetail extends AbstractStructBase
      * @uses FreightShipmentDetail::setFedExFreightAccountNumber()
      * @uses FreightShipmentDetail::setFedExFreightBillingContactAndAddress()
      * @uses FreightShipmentDetail::setAlternateBilling()
+     * @uses FreightShipmentDetail::setPrintedReferences()
      * @uses FreightShipmentDetail::setRole()
      * @uses FreightShipmentDetail::setCollectTermsType()
      * @uses FreightShipmentDetail::setDeclaredValuePerUnit()
@@ -170,12 +192,14 @@ class FreightShipmentDetail extends AbstractStructBase
      * @uses FreightShipmentDetail::setShipmentDimensions()
      * @uses FreightShipmentDetail::setComment()
      * @uses FreightShipmentDetail::setSpecialServicePayments()
+     * @uses FreightShipmentDetail::setHazardousMaterialsEmergencyContactNumber()
      * @uses FreightShipmentDetail::setHazardousMaterialsOfferor()
      * @uses FreightShipmentDetail::setLineItems()
      * @param string $fedExFreightAccountNumber
      * @param \Arkitecht\FedEx\Structs\ContactAndAddress
      * $fedExFreightBillingContactAndAddress
      * @param \Arkitecht\FedEx\Structs\Party $alternateBilling
+     * @param \Arkitecht\FedEx\Structs\PrintedReference $printedReferences
      * @param string $role
      * @param string $collectTermsType
      * @param \Arkitecht\FedEx\Structs\Money $declaredValuePerUnit
@@ -189,15 +213,17 @@ class FreightShipmentDetail extends AbstractStructBase
      * @param string $comment
      * @param \Arkitecht\FedEx\Structs\FreightSpecialServicePayment
      * $specialServicePayments
+     * @param string $hazardousMaterialsEmergencyContactNumber
      * @param string $hazardousMaterialsOfferor
      * @param \Arkitecht\FedEx\Structs\FreightShipmentLineItem $lineItems
      */
-    public function __construct($fedExFreightAccountNumber = null, \Arkitecht\FedEx\Structs\ContactAndAddress $fedExFreightBillingContactAndAddress = null, \Arkitecht\FedEx\Structs\Party $alternateBilling = null, $role = null, $collectTermsType = null, \Arkitecht\FedEx\Structs\Money $declaredValuePerUnit = null, $declaredValueUnits = null, \Arkitecht\FedEx\Structs\LiabilityCoverageDetail $liabilityCoverageDetail = null, $coupons = null, $totalHandlingUnits = null, $clientDiscountPercent = null, \Arkitecht\FedEx\Structs\Weight $palletWeight = null, \Arkitecht\FedEx\Structs\Dimensions $shipmentDimensions = null, $comment = null, \Arkitecht\FedEx\Structs\FreightSpecialServicePayment $specialServicePayments = null, $hazardousMaterialsOfferor = null, \Arkitecht\FedEx\Structs\FreightShipmentLineItem $lineItems = null)
+    public function __construct($fedExFreightAccountNumber = null, \Arkitecht\FedEx\Structs\ContactAndAddress $fedExFreightBillingContactAndAddress = null, \Arkitecht\FedEx\Structs\Party $alternateBilling = null, \Arkitecht\FedEx\Structs\PrintedReference $printedReferences = null, $role = null, $collectTermsType = null, \Arkitecht\FedEx\Structs\Money $declaredValuePerUnit = null, $declaredValueUnits = null, \Arkitecht\FedEx\Structs\LiabilityCoverageDetail $liabilityCoverageDetail = null, $coupons = null, $totalHandlingUnits = null, $clientDiscountPercent = null, \Arkitecht\FedEx\Structs\Weight $palletWeight = null, \Arkitecht\FedEx\Structs\Dimensions $shipmentDimensions = null, $comment = null, \Arkitecht\FedEx\Structs\FreightSpecialServicePayment $specialServicePayments = null, $hazardousMaterialsEmergencyContactNumber = null, $hazardousMaterialsOfferor = null, \Arkitecht\FedEx\Structs\FreightShipmentLineItem $lineItems = null)
     {
         $this
             ->setFedExFreightAccountNumber($fedExFreightAccountNumber)
             ->setFedExFreightBillingContactAndAddress($fedExFreightBillingContactAndAddress)
             ->setAlternateBilling($alternateBilling)
+            ->setPrintedReferences($printedReferences)
             ->setRole($role)
             ->setCollectTermsType($collectTermsType)
             ->setDeclaredValuePerUnit($declaredValuePerUnit)
@@ -210,6 +236,7 @@ class FreightShipmentDetail extends AbstractStructBase
             ->setShipmentDimensions($shipmentDimensions)
             ->setComment($comment)
             ->setSpecialServicePayments($specialServicePayments)
+            ->setHazardousMaterialsEmergencyContactNumber($hazardousMaterialsEmergencyContactNumber)
             ->setHazardousMaterialsOfferor($hazardousMaterialsOfferor)
             ->setLineItems($lineItems);
     }
@@ -266,6 +293,24 @@ class FreightShipmentDetail extends AbstractStructBase
     public function setAlternateBilling(\Arkitecht\FedEx\Structs\Party $alternateBilling = null)
     {
         $this->AlternateBilling = $alternateBilling;
+        return $this;
+    }
+    /**
+     * Get PrintedReferences value
+     * @return \Arkitecht\FedEx\Structs\PrintedReference|null
+     */
+    public function getPrintedReferences()
+    {
+        return $this->PrintedReferences;
+    }
+    /**
+     * Set PrintedReferences value
+     * @param \Arkitecht\FedEx\Structs\PrintedReference $printedReferences
+     * @return \Arkitecht\FedEx\Structs\FreightShipmentDetail
+     */
+    public function setPrintedReferences(\Arkitecht\FedEx\Structs\PrintedReference $printedReferences = null)
+    {
+        $this->PrintedReferences = $printedReferences;
         return $this;
     }
     /**
@@ -493,6 +538,24 @@ class FreightShipmentDetail extends AbstractStructBase
     public function setSpecialServicePayments(\Arkitecht\FedEx\Structs\FreightSpecialServicePayment $specialServicePayments = null)
     {
         $this->SpecialServicePayments = $specialServicePayments;
+        return $this;
+    }
+    /**
+     * Get HazardousMaterialsEmergencyContactNumber value
+     * @return string|null
+     */
+    public function getHazardousMaterialsEmergencyContactNumber()
+    {
+        return $this->HazardousMaterialsEmergencyContactNumber;
+    }
+    /**
+     * Set HazardousMaterialsEmergencyContactNumber value
+     * @param string $hazardousMaterialsEmergencyContactNumber
+     * @return \Arkitecht\FedEx\Structs\FreightShipmentDetail
+     */
+    public function setHazardousMaterialsEmergencyContactNumber($hazardousMaterialsEmergencyContactNumber = null)
+    {
+        $this->HazardousMaterialsEmergencyContactNumber = $hazardousMaterialsEmergencyContactNumber;
         return $this;
     }
     /**

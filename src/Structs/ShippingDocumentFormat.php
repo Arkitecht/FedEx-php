@@ -71,6 +71,14 @@ class ShippingDocumentFormat extends AbstractStructBase
      */
     public $Localization;
     /**
+     * The CustomDocumentIdentifier
+     * Meta informations extracted from the WSDL
+     * - documentation: Identifies the individual document specified by the client.
+     * - minOccurs: 0
+     * @var string
+     */
+    public $CustomDocumentIdentifier;
+    /**
      * Constructor method for ShippingDocumentFormat
      * @uses ShippingDocumentFormat::setDispositions()
      * @uses ShippingDocumentFormat::setTopOfPageOffset()
@@ -79,6 +87,7 @@ class ShippingDocumentFormat extends AbstractStructBase
      * @uses ShippingDocumentFormat::setProvideInstructions()
      * @uses ShippingDocumentFormat::setOptionsRequested()
      * @uses ShippingDocumentFormat::setLocalization()
+     * @uses ShippingDocumentFormat::setCustomDocumentIdentifier()
      * @param \Arkitecht\FedEx\Structs\ShippingDocumentDispositionDetail $dispositions
      * @param \Arkitecht\FedEx\Structs\LinearMeasure $topOfPageOffset
      * @param string $imageType
@@ -86,8 +95,9 @@ class ShippingDocumentFormat extends AbstractStructBase
      * @param boolean $provideInstructions
      * @param \Arkitecht\FedEx\Structs\DocumentFormatOptionsRequested $optionsRequested
      * @param \Arkitecht\FedEx\Structs\Localization $localization
+     * @param string $customDocumentIdentifier
      */
-    public function __construct(\Arkitecht\FedEx\Structs\ShippingDocumentDispositionDetail $dispositions = null, \Arkitecht\FedEx\Structs\LinearMeasure $topOfPageOffset = null, $imageType = null, $stockType = null, $provideInstructions = null, \Arkitecht\FedEx\Structs\DocumentFormatOptionsRequested $optionsRequested = null, \Arkitecht\FedEx\Structs\Localization $localization = null)
+    public function __construct(\Arkitecht\FedEx\Structs\ShippingDocumentDispositionDetail $dispositions = null, \Arkitecht\FedEx\Structs\LinearMeasure $topOfPageOffset = null, $imageType = null, $stockType = null, $provideInstructions = null, \Arkitecht\FedEx\Structs\DocumentFormatOptionsRequested $optionsRequested = null, \Arkitecht\FedEx\Structs\Localization $localization = null, $customDocumentIdentifier = null)
     {
         $this
             ->setDispositions($dispositions)
@@ -96,7 +106,8 @@ class ShippingDocumentFormat extends AbstractStructBase
             ->setStockType($stockType)
             ->setProvideInstructions($provideInstructions)
             ->setOptionsRequested($optionsRequested)
-            ->setLocalization($localization);
+            ->setLocalization($localization)
+            ->setCustomDocumentIdentifier($customDocumentIdentifier);
     }
     /**
      * Get Dispositions value
@@ -232,6 +243,24 @@ class ShippingDocumentFormat extends AbstractStructBase
     public function setLocalization(\Arkitecht\FedEx\Structs\Localization $localization = null)
     {
         $this->Localization = $localization;
+        return $this;
+    }
+    /**
+     * Get CustomDocumentIdentifier value
+     * @return string|null
+     */
+    public function getCustomDocumentIdentifier()
+    {
+        return $this->CustomDocumentIdentifier;
+    }
+    /**
+     * Set CustomDocumentIdentifier value
+     * @param string $customDocumentIdentifier
+     * @return \Arkitecht\FedEx\Structs\ShippingDocumentFormat
+     */
+    public function setCustomDocumentIdentifier($customDocumentIdentifier = null)
+    {
+        $this->CustomDocumentIdentifier = $customDocumentIdentifier;
         return $this;
     }
     /**
