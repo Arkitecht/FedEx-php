@@ -2,27 +2,21 @@
 
 namespace Arkitecht\FedEx\Services;
 
-use \WsdlToPhp\PackageBase\AbstractSoapClientBase;
 
-/**
- * This class stands for Get Services
- * @subpackage Services
- */
-class RateService extends AbstractSoapClientBase
+class RateService extends FedExService
 {
-	
+
 	public function __construct(array $wsdlOptions = array(), $resetSoapClient = true) {
 		$default_options = [
 			\WsdlToPhp\PackageBase\AbstractSoapClientBase::WSDL_URL => dirname(__FILE__).DIRECTORY_SEPARATOR.'wsdl'.DIRECTORY_SEPARATOR.'RateService_v18.wsdl',
 	    	\WsdlToPhp\PackageBase\AbstractSoapClientBase::WSDL_CLASSMAP => \Arkitecht\FedEx\ClassMap::get(),
 		];
 		$options = array_merge($default_options,$wsdlOptions);
-		parent::__construct($options,$resetSoapClient);		
+		parent::__construct($options,$resetSoapClient);
+
+        $this->version = new \Arkitecht\FedEx\Structs\VersionId('crs',18,0,0);
 	}
 
-    public function version() {
-        return new \Arkitecht\FedEx\Structs\VersionId('crs',18,0,0);
-    }
 
     /**
      * Method to call the operation originally named getRates

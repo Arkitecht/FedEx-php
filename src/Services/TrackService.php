@@ -2,13 +2,7 @@
 
 namespace Arkitecht\FedEx\Services;
 
-use \WsdlToPhp\PackageBase\AbstractSoapClientBase;
-
-/**
- * This class stands for Track Services
- * @subpackage Services
- */
-class TrackService extends AbstractSoapClientBase
+class TrackService extends FedExService
 {
     public function __construct(array $wsdlOptions = array(), $resetSoapClient = true) {
         $default_options = [
@@ -17,10 +11,8 @@ class TrackService extends AbstractSoapClientBase
         ];
         $options = array_merge($default_options,$wsdlOptions);
         parent::__construct($options,$resetSoapClient);
-    }
 
-    public function version() {
-        return new \Arkitecht\FedEx\Structs\VersionId('trck',10,0,0);
+        $this->version = new \Arkitecht\FedEx\Structs\VersionId('trck',10,0,0);
     }
 
     /**
