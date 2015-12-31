@@ -1,6 +1,6 @@
 {
-    "name": "arkitech/fedex",
-    "description": "FedEx package. Classes generated using wsdltophp/packagegenerator",
+    "name": "arkitecht/fedex-php",
+    "description": "FedEx PHP package. Classes generated using wsdltophp/packagegenerator",
     "require": {
         "php": ">=5.3.3",
         "ext-soap": "*",
