@@ -11,6 +11,14 @@ use \WsdlToPhp\PackageBase\AbstractStructBase;
 class Commodity extends AbstractStructBase
 {
     /**
+     * The CommodityId
+     * Meta informations extracted from the WSDL
+     * - documentation: Value used to identify a commodity description; must be unique within the containing shipment.
+     * - minOccurs: 0
+     * @var string
+     */
+    public $CommodityId;
+    /**
      * The Name
      * Meta informations extracted from the WSDL
      * - minOccurs: 0
@@ -137,6 +145,7 @@ class Commodity extends AbstractStructBase
     public $NaftaDetail;
     /**
      * Constructor method for Commodity
+     * @uses Commodity::setCommodityId()
      * @uses Commodity::setName()
      * @uses Commodity::setNumberOfPieces()
      * @uses Commodity::setDescription()
@@ -154,6 +163,7 @@ class Commodity extends AbstractStructBase
      * @uses Commodity::setCIMarksAndNumbers()
      * @uses Commodity::setPartNumber()
      * @uses Commodity::setNaftaDetail()
+     * @param string $commodityId
      * @param string $name
      * @param nonNegativeInteger $numberOfPieces
      * @param string $description
@@ -172,9 +182,10 @@ class Commodity extends AbstractStructBase
      * @param string $partNumber
      * @param \Arkitecht\FedEx\Structs\NaftaCommodityDetail $naftaDetail
      */
-    public function __construct($name = null, $numberOfPieces = null, $description = null, $countryOfManufacture = null, $harmonizedCode = null, \Arkitecht\FedEx\Structs\Weight $weight = null, $quantity = null, $quantityUnits = null, \Arkitecht\FedEx\Structs\Measure $additionalMeasures = null, \Arkitecht\FedEx\Structs\Money $unitPrice = null, \Arkitecht\FedEx\Structs\Money $customsValue = null, \Arkitecht\FedEx\Structs\EdtExciseCondition $exciseConditions = null, $exportLicenseNumber = null, $exportLicenseExpirationDate = null, $cIMarksAndNumbers = null, $partNumber = null, \Arkitecht\FedEx\Structs\NaftaCommodityDetail $naftaDetail = null)
+    public function __construct($commodityId = null, $name = null, $numberOfPieces = null, $description = null, $countryOfManufacture = null, $harmonizedCode = null, \Arkitecht\FedEx\Structs\Weight $weight = null, $quantity = null, $quantityUnits = null, \Arkitecht\FedEx\Structs\Measure $additionalMeasures = null, \Arkitecht\FedEx\Structs\Money $unitPrice = null, \Arkitecht\FedEx\Structs\Money $customsValue = null, \Arkitecht\FedEx\Structs\EdtExciseCondition $exciseConditions = null, $exportLicenseNumber = null, $exportLicenseExpirationDate = null, $cIMarksAndNumbers = null, $partNumber = null, \Arkitecht\FedEx\Structs\NaftaCommodityDetail $naftaDetail = null)
     {
         $this
+            ->setCommodityId($commodityId)
             ->setName($name)
             ->setNumberOfPieces($numberOfPieces)
             ->setDescription($description)
@@ -192,6 +203,24 @@ class Commodity extends AbstractStructBase
             ->setCIMarksAndNumbers($cIMarksAndNumbers)
             ->setPartNumber($partNumber)
             ->setNaftaDetail($naftaDetail);
+    }
+    /**
+     * Get CommodityId value
+     * @return string|null
+     */
+    public function getCommodityId()
+    {
+        return $this->CommodityId;
+    }
+    /**
+     * Set CommodityId value
+     * @param string $commodityId
+     * @return \Arkitecht\FedEx\Structs\Commodity
+     */
+    public function setCommodityId($commodityId = null)
+    {
+        $this->CommodityId = $commodityId;
+        return $this;
     }
     /**
      * Get Name value
