@@ -19,6 +19,10 @@ class TrackService extends AbstractSoapClientBase
         parent::__construct($options,$resetSoapClient);
     }
 
+    public function version() {
+        return new \Arkitecht\FedEx\Structs\VersionId('trck',10,0,0);
+    }
+
     /**
      * Method to call the operation originally named track
      * @uses AbstractSoapClientBase::getSoapClient()

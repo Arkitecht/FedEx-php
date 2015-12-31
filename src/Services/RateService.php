@@ -19,6 +19,11 @@ class RateService extends AbstractSoapClientBase
 		$options = array_merge($default_options,$wsdlOptions);
 		parent::__construct($options,$resetSoapClient);		
 	}
+
+    public function version() {
+        return new \Arkitecht\FedEx\Structs\VersionId('crs',18,0,0);
+    }
+
     /**
      * Method to call the operation originally named getRates
      * @uses AbstractSoapClientBase::getSoapClient()
