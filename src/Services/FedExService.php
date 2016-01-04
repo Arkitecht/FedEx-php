@@ -12,8 +12,9 @@ class FedExService extends AbstractSoapClientBase
 {
     public $version;
 
-    public function __construct(array $wsdlOptions = array(), $resetSoapClient = true) {
+    public function __construct(array $wsdlOptions = array(), $resetSoapClient = true, $beta = false) {
         parent::__construct($wsdlOptions,$resetSoapClient);
+        if ( !$beta ) $this->setLocation('https://ws.fedex.com:443/web-services');
     }
 
     public static function version() {
