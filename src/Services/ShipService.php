@@ -11,12 +11,12 @@ use \WsdlToPhp\PackageBase\AbstractSoapClientBase;
 class ShipService extends FedExService
 {
 
-    public function __construct(array $wsdlOptions = array(), $resetSoapClient = true) {
+    public function __construct(array $wsdlOptions = array(), $resetSoapClient = true, $beta = false) {
         $default_options = [
             \WsdlToPhp\PackageBase\AbstractSoapClientBase::WSDL_URL => dirname(__FILE__).DIRECTORY_SEPARATOR.'wsdl'.DIRECTORY_SEPARATOR.'ShipService_v17.wsdl',
             \WsdlToPhp\PackageBase\AbstractSoapClientBase::WSDL_CLASSMAP => \Arkitecht\FedEx\ClassMap::get(),
         ];
-        $options = array_merge($default_options,$wsdlOptions);
+        $options = array_merge($default_options,$wsdlOptions,$beta);
         parent::__construct($options,$resetSoapClient);
 
         $this->version = new \Arkitecht\FedEx\Structs\VersionId('ship',17,0,0);
